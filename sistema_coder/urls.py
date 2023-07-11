@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from sistema_coder.views import saludar, saludar_con_fecha
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # La ruta de la URL puede ser diferente al nombre de la view
+    path("saludo/", saludar),
+    path("saludo-hoy/", saludar_con_fecha),
 ]
