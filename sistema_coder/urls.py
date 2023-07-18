@@ -24,6 +24,7 @@ from sistema_coder.views import saludar, saludar_con_fecha, saludar_con_html
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("estudios/", include("control_estudios.urls")),
+    # URLs con fines academicos
     # La ruta de la URL puede ser diferente al nombre de la view
     path("saludo/", saludar),
     path("saludo-hoy/", saludar_con_fecha),

@@ -16,3 +16,20 @@ def listar_estudiantes(request):
         context=contexto,
     )
     return http_response
+
+
+def listar_cursos(request):
+    # Data de pruebas, más adelante la llenaremos con nuestros cursos de verdad
+    contexto = {
+        "cursos": [
+            {"nombre": "Fisica", "comision": 1000},
+            {"nombre": "Python", "comision": 55350},
+            {"nombre": "Redes Sociales", "comision": 2000},
+        ]
+    }
+    http_response = render(
+        request=request,
+        template_name='control_estudios/lista_cursos.html',
+        context=contexto,
+    )
+    return http_response
