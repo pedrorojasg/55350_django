@@ -1,11 +1,28 @@
 <!doctype html>
 <html>
   <head>
-    <title>Sistema Coder de la comision 55350</title>
+    <title>Sistema Coder de la comision {{ comision }}</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
   </head>
   <body>
-    <p style="color: red;">Hola {{ comision }}, les saluda {{ profesor }} y {{ tutores }}</p>
+    <h1>
+      Bienvenidos, les saluda {{ profesor }}
+    </h1>
+
+    <h3>Alumnos inscritos:</h3>
+    <ul>
+    {% for estudiante in estudiantes %}
+      <li>
+        {{ estudiante.apellido}}, {{ estudiante.nombre}}
+        {% if estudiante.nota >= 5 %}
+         APROBADO
+        {% else %}
+         REPROBADO
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+
   </body>
 </html>
