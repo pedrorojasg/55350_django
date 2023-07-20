@@ -5,6 +5,9 @@ class Curso(models.Model):
     nombre = models.CharField(max_length=64)
     comision = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.nombre}, {self.comision}"
+
 
 class Estudiante(models.Model):
     apellido = models.CharField(max_length=256)
@@ -13,6 +16,9 @@ class Estudiante(models.Model):
     telefono = models.CharField(max_length=20, blank=True)
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)
+
+    def __str__(self):
+        return f"{self.apellido}, {self.nombre}"
 
 
 class Profesor(models.Model):
@@ -23,6 +29,9 @@ class Profesor(models.Model):
     fecha_nacimiento = models.DateField(null=True, blank=True)
     profesion = models.CharField(max_length=128)
     bio = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.apellido}, {self.nombre}"
 
 
 class Entregable(models.Model):
