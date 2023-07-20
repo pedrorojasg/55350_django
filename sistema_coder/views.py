@@ -17,7 +17,7 @@ def saludar_con_fecha(request):
     return respuesta_http
 
 
-def saludar_con_html(request):
+def inicio(request):
     contexto = {}
     http_response = render(
         request=request,

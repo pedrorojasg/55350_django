@@ -1,19 +1,12 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Sistema Coder de la comision {{ comision }}</title>
-    <meta name="description" content="Our first page">
-    <meta name="keywords" content="html tutorial template">
-  </head>
-  <body>
-    <h3>Cursos:</h3>
-    <ul>
-    {% for curso in cursos %}
-      <li>
-        {{ curso.nombre}}, {{ curso.comision}}
-      </li>
-    {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-  </body>
-</html>
+{% block contenido %}
+<h3>Cursos:</h3>
+<ul>
+  {% for curso in cursos %}
+  <li>
+    {{ curso.nombre}}, {{ curso.comision}}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock contenido %}

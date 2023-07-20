@@ -1,28 +1,21 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Sistema Coder de la comision {{ comision }}</title>
-    <meta name="description" content="Our first page">
-    <meta name="keywords" content="html tutorial template">
-  </head>
-  <body>
-    <h1>
-      Bienvenidos, les saluda {{ profesor }}
-    </h1>
+{% extends "base.html" %}
 
-    <h3>Alumnos inscritos:</h3>
-    <ul>
-    {% for estudiante in estudiantes %}
-      <li>
-        {{ estudiante.apellido}}, {{ estudiante.nombre}}
-        {% if estudiante.nota >= 5 %}
-         APROBADO
-        {% else %}
-         REPROBADO
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ul>
+{% block contenido %}
+<h1>
+  Bienvenidos, les saluda {{ profesor }}
+</h1>
 
-  </body>
-</html>
+<h3>Alumnos inscritos:</h3>
+<ul>
+{% for estudiante in estudiantes %}
+  <li>
+    {{ estudiante.apellido}}, {{ estudiante.nombre}}
+    {% if estudiante.nota >= 5 %}
+      APROBADO
+    {% else %}
+      REPROBADO
+    {% endif %}
+  </li>
+{% endfor %}
+</ul>
+{% endblock contenido %}
