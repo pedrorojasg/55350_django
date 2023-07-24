@@ -14,11 +14,6 @@ Lista de estudiantes
 {% for estudiante in estudiantes %}
   <li>
     {{ estudiante.apellido}}, {{ estudiante.nombre}}
-    {% if estudiante.nota >= 5 %}
-      APROBADO
-    {% else %}
-      REPROBADO
-    {% endif %}
   </li>
 {% endfor %}
 </ul>

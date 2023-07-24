@@ -1,14 +1,12 @@
 from django.shortcuts import render
 
+from control_estudios.models import Curso, Estudiante
+
+
 def listar_estudiantes(request):
     contexto = {
         "profesor": "Pedro",
-        "estudiantes": [
-            {"nombre": "Emanuel", "apellido": "Dautel", "nota": 10},
-            {"nombre": "Manuela", "apellido": "Gomez", "nota": 4},
-            {"nombre": "Ivan", "apellido": "Tomasevich", "nota": 6},
-            {"nombre": "Carlos", "apellido": "Perez", "nota": 1},
-        ]
+        "estudiantes": Estudiante.objects.all(),
     }
     http_response = render(
         request=request,
@@ -21,11 +19,7 @@ def listar_estudiantes(request):
 def listar_cursos(request):
     # Data de pruebas, más adelante la llenaremos con nuestros cursos de verdad
     contexto = {
-        "cursos": [
-            {"nombre": "Fisica", "comision": 1000},
-            {"nombre": "Python", "comision": 55350},
-            {"nombre": "Redes Sociales", "comision": 2000},
-        ]
+        "cursos": Curso.objects.all(),
     }
     http_response = render(
         request=request,
