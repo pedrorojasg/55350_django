@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.db.models import Q
 
 from control_estudios.models import Curso, Estudiante
 from control_estudios.forms import CursoFormulario
@@ -81,3 +82,24 @@ def crear_curso(request):
         context={'formulario': formulario}
     )
     return http_response
+
+
+def buscar_cursos(request):
+   if request.method == "POST":
+        data = request.POST
+        busqueda = data["busqueda"]
+        # Filtro simple
+        cursos = Curso.objects.filter(comision__contains=busqueda)
+        # Ejemplo filtro avanzado
+        # cursos = Curso.objects.filter(
+        #     Q(nombre=busqueda) | Q(comision__contains=busqueda)
+        # )
+        contexto = {
+            "cursos": cursos,
+        }
+        http_response = render(
+            request=request,
+            template_name='control_estudios/lista_cursos.html',
+            context=contexto,
+        )
+        return http_response
