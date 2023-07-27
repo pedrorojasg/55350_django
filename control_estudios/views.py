@@ -103,3 +103,14 @@ def buscar_cursos(request):
             context=contexto,
         )
         return http_response
+
+
+def eliminar_curso(request, id):
+    # obtienes el curso de la base de datos
+    curso = Curso.objects.get(id=id)
+    if request.method == "POST":
+        # borra el curso de la base de datos
+        curso.delete()
+        # redireccionamos a la URL exitosa
+        url_exitosa = reverse('lista_cursos')
+        return redirect(url_exitosa)
