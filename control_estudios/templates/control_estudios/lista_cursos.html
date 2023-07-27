@@ -23,6 +23,7 @@ Lista de cursos
       <th>Nombre</th>
       <th>Comision</th>
       <th></th>
+      <th></th>
     </tr>
     {% for curso in cursos %}
     <tr>
@@ -30,9 +31,12 @@ Lista de cursos
       <td>{{ curso.nombre }}</td>
       <td>{{ curso.comision }}</td>
       <td>
+        <a class="btn btn-link" href="{% url 'editar_curso' curso.id %}">editar</a>
+      </td>
+      <td>
         <form action="{% url 'eliminar_curso' curso.id %}" method="post">
           {% csrf_token %}
-          <input type="submit" value="eliminar"/>
+          <input type="submit" class="btn btn-link" value="eliminar"/>
         </form>
       </td>
     </tr>
