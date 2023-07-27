@@ -1,24 +1,27 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.db.models import Q
 
 from control_estudios.models import Curso, Estudiante
 from control_estudios.forms import CursoFormulario
 
 
-def listar_estudiantes(request):
-    contexto = {
-        "profesor": "Pedro",
-        "estudiantes": Estudiante.objects.all(),
-    }
-    http_response = render(
-        request=request,
-        template_name='control_estudios/lista_estudiantes.html',
-        context=contexto,
-    )
-    return http_response
+# NO USADO. ver vista basada en clases abajo
+# def listar_estudiantes(request):
+#     contexto = {
+#         "profesor": "Pedro",
+#         "estudiantes": Estudiante.objects.all(),
+#     }
+#     http_response = render(
+#         request=request,
+#         template_name='control_estudios/lista_estudiantes.html',
+#         context=contexto,
+#     )
+#     return http_response
 
 
+# Vistas de cursos
 def listar_cursos(request):
     # Data de pruebas, más adelante la llenaremos con nuestros cursos de verdad
     contexto = {
@@ -140,3 +143,31 @@ def editar_curso(request, id):
         template_name='control_estudios/formulario_curso.html',
         context={'formulario': formulario},
     )
+
+
+# Vistas de estudiantes (basadas en clases)
+class EstudianteListView(ListView):
+    model = Estudiante
+    template_name = 'control_estudios/lista_estudiantes.html'
+
+
+class EstudianteCreateView(CreateView):
+    model = Estudiante
+    fields = ('apellido', 'nombre', 'email', 'dni')
+    success_url = reverse_lazy('lista_estudiantes')
+
+
+class EstudianteDetailView(DetailView):
+    model = Estudiante
+    success_url = reverse_lazy('lista_estudiantes')
+
+
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
+    fields = ('apellido', 'nombre', 'email', 'dni')
+    success_url = reverse_lazy('lista_estudiantes')
+
+
+class EstudianteDeleteView(DeleteView):
+    model = Estudiante
+    success_url = reverse_lazy('lista_estudiantes')
