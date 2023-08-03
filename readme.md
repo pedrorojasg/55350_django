@@ -26,4 +26,5 @@ username:admin
 contraseña:sup3r123!
 
 # Usuarios normales
-??
+username:mariaperez
+contraseña:sup3r123!
